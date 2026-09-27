@@ -1836,30 +1836,33 @@ function Library:AddCategory(options)
 
             local sectionIcon
             if sectionIconAsset then
-                local iconTile = New("Frame", {
-                    Name = "SectionIconTile",
-                    BackgroundColor3 = COLORS.BlueSelection,
-                    BackgroundTransparency = 0.54,
-                    BorderSizePixel = 0,
-                    Position = UDim2.fromOffset(9, 7),
-                    Size = UDim2.fromOffset(22, 22),
-                    ZIndex = 6,
+                -- Icone seule, sans tuile/encadrement.
+                -- Un duplicata plus grand et transparent sert uniquement de halo doux.
+                local sectionIconGlow = New("ImageLabel", {
+                    Name = "MakoSectionIconGlow",
+                    BackgroundTransparency = 1,
+                    AnchorPoint = Vector2.new(0.5, 0.5),
+                    Position = UDim2.fromOffset(20, 18),
+                    Size = UDim2.fromOffset(24, 24),
+                    Image = sectionIconAsset,
+                    ImageColor3 = COLORS.Icon,
+                    ImageTransparency = 0.72,
+                    ScaleType = Enum.ScaleType.Fit,
+                    ZIndex = 5,
                 }, frame)
-                Corner(iconTile, 5)
-                Stroke(iconTile, COLORS.Blue, 1, 0.52)
 
                 sectionIcon = New("ImageLabel", {
                     Name = "MakoSectionIcon",
                     BackgroundTransparency = 1,
                     AnchorPoint = Vector2.new(0.5, 0.5),
-                    Position = UDim2.fromScale(0.5, 0.5),
-                    Size = UDim2.fromOffset(13, 13),
+                    Position = UDim2.fromOffset(20, 18),
+                    Size = UDim2.fromOffset(15, 15),
                     Image = sectionIconAsset,
                     ImageColor3 = COLORS.Icon,
-                    ImageTransparency = 0.05,
+                    ImageTransparency = 0.02,
                     ScaleType = Enum.ScaleType.Fit,
                     ZIndex = 7,
-                }, iconTile)
+                }, frame)
             end
 
             local sectionTitle = Label(
